@@ -27,18 +27,18 @@ int[,] MatrixMultiply(int[,] matrixA, int[,] matrixB)
 
     for (int k = 0; k < matrixA.GetLength(0) * matrixB.GetLength(1); k++)
     {
+        int count = 0;
         for (int i = 0; i < matrixA.GetLength(0); i++)
         {
             int mul;
             int sum = 0;
-            int count = 0;
             for (int j = 0; j < matrixB.GetLength(1); j++)
             {
                 mul = matrixA[i, j] * matrixB[j, i];
                 sum = sum + mul;
-                count++;
             }
             ResultMatrix[i, count] = sum;
+            count++;
         }
     }
     return ResultMatrix;
