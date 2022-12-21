@@ -21,30 +21,6 @@ int[,] FillArray(int m, int n) //Заполнение массива
     return array;
 }
 
-int[,] MatrixMultiply(int[,] matrixA, int[,] matrixB)
-{
-    int[,] ResultMatrix = new int[(matrixA.GetLength(0)), (matrixB.GetLength(1))]; //определили количество строк и столбцов результирующего массива
-
-    for (int k = 0; k < matrixA.GetLength(0) * matrixB.GetLength(1); k++)
-    {
-        int count = 0;
-        for (int i = 0; i < matrixA.GetLength(0); i++)
-        {
-            int mul;
-            int sum = 0;
-            for (int j = 0; j < matrixB.GetLength(1); j++)
-            {
-                mul = matrixA[i, j] * matrixB[j, i];
-                sum = sum + mul;
-            }
-            ResultMatrix[i, count] = sum;
-            count++;
-        }
-    }
-    return ResultMatrix;
-}
-
-
 void ExitArray(int[,] array) // Вывод двумерного массива
 {
     Console.WriteLine();
@@ -58,9 +34,47 @@ void ExitArray(int[,] array) // Вывод двумерного массива
     }
 }
 
+int CalcNumber(int[,] matrixA, int[,] matrixB, int strA, int stlB) // считает конкретный элемент нового массива с индексами i и j
+//strA - номер строки по которой двигаемся в первом массиве. По сути это номер строки результирующего массива
+//stlB - номер столбца по которому двигаемся во втором массиве. По сути это номер вызова метода
+//Внутри метода эти переменные не меняются. двигаемся за счет изменения индекса j который начинается всегда с 0.
+// в первом массиве он меняет номер столбца. Во втором массиве - номер строки.
+
+{
+    int mul;
+    int sum = 0;
+    for (int j = 0; j < matrixB.GetLength(1); j++)
+    {
+        mul = matrixA[strA, j] * matrixB[j, stlB];
+        sum = sum + mul;
+    }
+    return sum;
+}
+
+//int[,] MatrixMultiply(int[,] matrixA, int matrixB[,])
+
+
 int[,] matrixA = FillArray(2, 2);
 Console.WriteLine();
 int[,] matrixB = FillArray(2, 2);
+int m = matrixB.GetLength(1);
+int n = matrixA.GetLength(0);
+int[,] matrixC = new int[m,n];
+if (m != n) Console.WriteLine("Произведение данных матриц невозможно");
+else
+{
+    
+for (int i=0; i<n; i++)
+{
+    
+    for (int j = 0; j < n; j++)
+    {
+        matrixC[i,j] = CalcNumber(matrixA, matrixB, i, j );
+        
+    }
+    
+}
 
-int[,] matrixC = MatrixMultiply(matrixA, matrixB);
 ExitArray(matrixC);
+
+}
