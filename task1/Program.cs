@@ -65,12 +65,10 @@ void ExitArray(int[,] array) // Вывод двумерного массива
 }
 
 
-
 int m = EnterData("Введите количество строк массива: ");
 int n = EnterData("Введите количество столбцов массива: ");
 
 int[,] array = FillArray(m, n);
-
 
 array = SortArrayInRows(array);
 
