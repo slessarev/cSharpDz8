@@ -23,18 +23,21 @@ int[,] FillArray(int m, int n) //Заполнение массива
     return array;
 }
 
-int[,] SortArrayInRows(int[,] array, int rowNumber) //Пузырьковая сортировка в строке
+int[,] SortArrayInRows(int[,] array) //Пузырьковая сортировка по строкам
 {
     int temp;
-    for (int i = 0; i < array.GetLength(1); i++)
+    for (int rowNumber = 0; rowNumber < array.GetLength(0); rowNumber++)
     {
-        for (int j = 0; j < array.GetLength(1) - 1; j++)
+        for (int i = 0; i < array.GetLength(1); i++)
         {
-            if (array[rowNumber, j] < array[rowNumber, j + 1])
+            for (int j = 0; j < array.GetLength(1) - 1; j++)
             {
-                temp = array[rowNumber, j];
-                array[rowNumber, j] = array[rowNumber, j + 1];
-                array[rowNumber, j + 1] = temp;
+                if (array[rowNumber, j] < array[rowNumber, j + 1])
+                {
+                    temp = array[rowNumber, j];
+                    array[rowNumber, j] = array[rowNumber, j + 1];
+                    array[rowNumber, j + 1] = temp;
+                }
             }
         }
     }
@@ -68,8 +71,7 @@ int n = EnterData("Введите количество столбцов масс
 
 int[,] array = FillArray(m, n);
 
-for (int i = 0; i < n; i++) // Построчная сортировка методом
-{
-    array = SortArrayInRows(array, i);
-}
+
+array = SortArrayInRows(array);
+
 ExitArray(array);
