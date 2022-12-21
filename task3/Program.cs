@@ -31,12 +31,14 @@ int[,] MatrixMultiply(int[,] matrixA, int[,] matrixB)
         {
             int mul;
             int sum = 0;
+            int count = 0;
             for (int j = 0; j < matrixB.GetLength(1); j++)
             {
                 mul = matrixA[i, j] * matrixB[j, i];
                 sum = sum + mul;
+                count++;
             }
-            ResultMatrix[k,i]=sum;
+            ResultMatrix[i, count] = sum;
         }
     }
     return ResultMatrix;
