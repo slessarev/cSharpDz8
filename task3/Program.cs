@@ -54,9 +54,9 @@ int CalcNumber(int[,] matrixA, int[,] matrixB, int strA, int stlB) // счита
 //int[,] MatrixMultiply(int[,] matrixA, int matrixB[,])
 
 
-int[,] matrixA = FillArray(2, 2);
+int[,] matrixA = FillArray(3, 3);
 Console.WriteLine();
-int[,] matrixB = FillArray(2, 2);
+int[,] matrixB = FillArray(3, 3);
 int m = matrixB.GetLength(1);
 int n = matrixA.GetLength(0);
 int[,] matrixC = new int[m,n];
